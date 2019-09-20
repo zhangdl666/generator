@@ -39,6 +39,7 @@ public class PropertyRegistry {
      * recognized by table and java client generator.
      */
     public static final String ANY_ROOT_INTERFACE = "rootInterface"; //$NON-NLS-1$
+    public static final String ANY_EXAMPLE_ROOT_INTERFACE = "exampleRootInterface"; //Example基类 add by zdl
 
     public static final String TABLE_USE_COLUMN_INDEXES = "useColumnIndexes"; //$NON-NLS-1$
     public static final String TABLE_USE_ACTUAL_COLUMN_NAMES = "useActualColumnNames"; //$NON-NLS-1$

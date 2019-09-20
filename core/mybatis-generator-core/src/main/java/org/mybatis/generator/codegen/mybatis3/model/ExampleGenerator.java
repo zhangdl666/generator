@@ -37,6 +37,7 @@ import org.mybatis.generator.api.dom.java.Parameter;
 import org.mybatis.generator.api.dom.java.TopLevelClass;
 import org.mybatis.generator.codegen.AbstractJavaGenerator;
 import org.mybatis.generator.codegen.mybatis3.MyBatis3FormattingUtilities;
+import org.mybatis.generator.config.PropertyRegistry;
 
 public class ExampleGenerator extends AbstractJavaGenerator {
 
@@ -56,6 +57,20 @@ public class ExampleGenerator extends AbstractJavaGenerator {
         TopLevelClass topLevelClass = new TopLevelClass(type);
         topLevelClass.setVisibility(JavaVisibility.PUBLIC);
         commentGenerator.addJavaFileComment(topLevelClass);
+
+        String rootInterface = introspectedTable
+                .getTableConfigurationProperty(PropertyRegistry.ANY_EXAMPLE_ROOT_INTERFACE);
+        if (!stringHasValue(rootInterface)) {
+            rootInterface = context.getJavaModelGeneratorConfiguration()
+                    .getProperty(PropertyRegistry.ANY_EXAMPLE_ROOT_INTERFACE);
+        }
+
+        if (stringHasValue(rootInterface)) {
+            FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType(
+                    rootInterface);
+            topLevelClass.addSuperInterface(fqjt);
+            topLevelClass.addImportedType(fqjt);
+        }
 
         // add default constructor
         Method method = new Method(type.getShortName());

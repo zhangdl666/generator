@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.mybatis.generator.codegen.RootClassInfo;
+import org.mybatis.generator.codegen.RootInterfaceInfo;
 import org.mybatis.generator.config.Configuration;
 import org.mybatis.generator.config.Context;
 import org.mybatis.generator.config.MergeConstants;
@@ -226,7 +227,7 @@ public class MyBatisGenerator {
         generatedXmlFiles.clear();
         ObjectFactory.reset();
         RootClassInfo.reset();
-
+        RootInterfaceInfo.reset();
         // calculate the contexts to run
         List<Context> contextsToRun;
         if (contextIds == null || contextIds.isEmpty()) {
